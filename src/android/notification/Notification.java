@@ -230,6 +230,8 @@ public class Notification {
     private void showNotification () {
         int id = getOptions().getId();
 
+// DvM dirty hack
+if (getOptions().getDict().optString("data", "{}").indexOf("dontShow")==-1) {
         if (Build.VERSION.SDK_INT <= 15) {
             // Notification for HoneyComb to ICS
             getNotMgr().notify(id, builder.getNotification());
@@ -237,6 +239,7 @@ public class Notification {
             // Notification for Jellybean and above
             getNotMgr().notify(id, builder.build());
         }
+}
     }
 
     /**
