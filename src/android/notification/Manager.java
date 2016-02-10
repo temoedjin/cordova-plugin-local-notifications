@@ -120,7 +120,7 @@ public class Manager {
                 notification.getOptions().getDict(), updates);
 
         try {
-            options.putOpt("updated", true);
+            options.put("updated", true);
         } catch (JSONException ignore) {}
 
         return schedule(options, receiver);
@@ -192,7 +192,11 @@ public class Manager {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
         for (String key : keys) {
-            ids.add(Integer.parseInt(key));
+            try {
+                ids.add(Integer.parseInt(key));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         }
 
         return ids;
